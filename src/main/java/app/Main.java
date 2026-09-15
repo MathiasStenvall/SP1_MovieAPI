@@ -13,6 +13,7 @@ public class Main {
         System.out.println(Ids);
         System.out.println(Ids.size());
 
+        movieAPI.createMovies(Ids);
 
     }
 

@@ -1,6 +1,7 @@
 package app.service;
 
 import app.DTO.APIResponse;
+import app.entities.Movie;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -41,4 +42,9 @@ public class MovieAPI {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Movie> createMovies (List<Integer> ids){
+
+    }
+
 }
