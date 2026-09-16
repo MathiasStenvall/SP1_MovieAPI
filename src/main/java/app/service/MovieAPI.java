@@ -1,8 +1,10 @@
 package app.service;
 
 import app.DTO.APIResponse;
+import app.DTO.MovieDTO;
 import app.entities.Movie;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +19,7 @@ public class MovieAPI {
 
     private final String apiKey = System.getenv("API_KEY");
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     public List<Integer> allMoviesIds() {
         List<Integer> movieIds = new ArrayList<>();
@@ -27,10 +29,10 @@ public class MovieAPI {
             int page = apiResponse.getPage();
             int totalPages = apiResponse.getTotalPages();
 
-            while (totalPages >= page){
+            while (totalPages >= page) {
                 APIResponse response = objectMapper.readValue(new URL((urlToAllMovies + page + urlToAllMovies2 + apiKey)),
                         APIResponse.class);
-                for (APIResponse.Result r: response.getResults()){
+                for (APIResponse.Result r : response.getResults()) {
                     movieIds.add(r.getId());
                 }
                 page++;
@@ -43,8 +45,31 @@ public class MovieAPI {
         }
     }
 
-    // public List<Movie> createMovies (List<Integer> ids){
-
-    // }
+    public List<Movie> createMovies(List<Integer> ids) {
+        String urlStart = "https://api.themoviedb.org/3/movie/";
+        String urlFinish = "?append_to_response=credits&language=en-US&api_key=";
+        List<Movie> movies = new ArrayList<>();
+        for (int i : ids) {
+            try {
+                MovieDTO dto = objectMapper.readValue(new URL((urlStart + i + urlFinish + apiKey)), MovieDTO.class);
+                Movie movie = new Movie(
+                        dto.getId(),
+                        dto.getCredits().getDirectors(),
+                        dto.getCredits().getCast(),
+                        dto.getGenres(),
+                        dto.getRating(),
+                        dto.getOriginalTitle(),
+                        dto.getReleaseDate(),
+                        dto.getPopularity(),
+                        dto.getBudget(),
+                        dto.getRevenue()
+                );
+                movies.add(movie);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return movies;
+    }
 
 }

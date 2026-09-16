@@ -1,5 +1,6 @@
 package app;
 
+import app.entities.Movie;
 import app.service.MovieAPI;
 
 import java.util.List;
@@ -10,11 +11,10 @@ public class Main {
 
         MovieAPI movieAPI = new MovieAPI();
         List<Integer> Ids = movieAPI.allMoviesIds();
-        System.out.println(Ids);
         System.out.println(Ids.size());
 
-        movieAPI.createMovies(Ids);
-
+        List<Movie> movies = movieAPI.createMovies(Ids);
+      
     }
 
 }

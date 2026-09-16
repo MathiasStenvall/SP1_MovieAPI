@@ -6,8 +6,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Director {
+public class Genre {
+
     @Id
     private int id;
     private String name;
+
 }

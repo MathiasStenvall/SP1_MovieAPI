@@ -10,18 +10,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class Actor {
+public class Crew {
     @Id
     private int id;
     private String name;
     private String gender;
-    private String character;
+    private String department;
+    private String job;
 
-    public Actor(int id, String name, int gender, String character) {
+    public Crew(int id, String name, int gender, String department, String job) {
         this.id = id;
         this.name = name;
         determineGender(gender);
-        this.character = character;
+        this.department = department;
+        this.job = job;
     }
 
     private void determineGender(int input){
