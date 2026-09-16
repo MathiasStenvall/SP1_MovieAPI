@@ -18,7 +18,7 @@ public class Movie {
     @Id
     private int id;
     @ManyToMany
-    private List<Crew> directors;
+    private List<Crew> crew;
     @ManyToMany
     private List<Actor> cast;
     @ManyToMany
