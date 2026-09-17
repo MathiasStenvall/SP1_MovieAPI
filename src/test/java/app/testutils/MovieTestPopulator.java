@@ -7,7 +7,6 @@ import app.entities.Movie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
