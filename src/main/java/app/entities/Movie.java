@@ -17,11 +17,11 @@ public class Movie {
 
     @Id
     private int id;
-    @ManyToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany (cascade = CascadeType.PERSIST)
     private List<Crew> crew;
-    @ManyToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany (cascade = CascadeType.PERSIST)
     private List<Actor> cast;
-    @ManyToMany (cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany (cascade = CascadeType.PERSIST)
     private List<Genre> genres;
     @JsonProperty ("vote_average")
     private double rating;
