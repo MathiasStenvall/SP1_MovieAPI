@@ -13,6 +13,7 @@ public class Main {
 
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
 
+        /*
         MovieAPI movieAPI = new MovieAPI();
         List<Integer> Ids = movieAPI.allMoviesIds();
         System.out.println(Ids.size());

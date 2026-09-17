@@ -4,9 +4,9 @@ import app.entities.Movie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.TypedQuery;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class MovieDAO implements IDAO<Movie> {
 
@@ -29,11 +29,10 @@ public class MovieDAO implements IDAO<Movie> {
     }
 
     @Override
-    public Set<Movie> get() {
+    public List<Movie> get() {
         try (EntityManager em = emf.createEntityManager()) {
-            HashSet<Movie> movies = new HashSet<>();
-            em.createQuery("SELECT m FROM Movie m").getResultList();
-            return movies;
+            TypedQuery<Movie> movies = em.createQuery("SELECT m FROM Movie m", Movie.class);
+            return movies.getResultList();
         }
     }
 
