@@ -1,5 +1,8 @@
 package app.DAO;
 
+import app.entities.Actor;
+import app.entities.Crew;
+import app.entities.Genre;
 import app.entities.Movie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -118,15 +121,6 @@ public class MovieDAO implements IDAO<Movie> {
 
         return movieList.stream().filter(movie -> movie.getGenres()
                 .stream().anyMatch(genre -> genre.getName().equalsIgnoreCase(genreName))).toList();
-
-
-        /*
-        try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Movie> query = em.createQuery("SELECT DISTINCT m FROM Movie m JOIN m.genres g LEFT JOIN FETCH m.crew, m.cast WHERE g.name = :genreName", Movie.class);
-            query.setParameter("genreName", genreName);
-            return query.getResultList();
-        }
-        */
     }
 
     public List<Movie> searchMovieByTitle(String movieName) {
