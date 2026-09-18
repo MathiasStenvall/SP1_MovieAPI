@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +20,7 @@ import java.util.List;
 public class MovieDTO {
 
     private double budget;
-    private List<Genre> genres;
+    private Set<Genre> genres;
     @Id
     private int id;
     @JsonProperty ("original_title")

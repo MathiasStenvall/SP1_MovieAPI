@@ -16,6 +16,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -47,7 +48,7 @@ class MovieDAOTest {
 
         Genre g1 = new Genre(3, "Documentary");
 
-        Movie m1 = new Movie(3, List.of(c1), List.of(a1), List.of(g1), 8.1, "Revenge of the Scientist"
+        Movie m1 = new Movie(3, Set.of(c1), Set.of(a1), Set.of(g1), 8.1, "Revenge of the Scientist"
         , LocalDate.of(2026, 10, 31), 1700, 2000, 500.30);
 
         Movie savedMovie = movieDAO.create(m1);

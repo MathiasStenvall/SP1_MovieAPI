@@ -29,9 +29,9 @@ public class MovieTestPopulator {
             Genre g1 = new Genre(1, "Adventure");
             Genre g2 = new Genre(2, "Romance");
 
-            Movie m1 = new Movie(1, List.of(c1), List.of(a1), List.of(g1), 6.4, "Ghost of Japan", testDate
+            Movie m1 = new Movie(1, Set.of(c1), Set.of(a1), Set.of(g1), 6.4, "Ghost of Japan", testDate
                     , 12000, 35000, 170000);
-            Movie m2 = new Movie(2, List.of(c2), List.of(a2), List.of(g2), 9.8, "Met last summer", testDate.plusDays(5)
+            Movie m2 = new Movie(2, Set.of(c2), Set.of(a2), Set.of(g2), 9.8, "Met last summer", testDate.plusDays(5)
                     , 27000, 50000, 320000);
 
             try {

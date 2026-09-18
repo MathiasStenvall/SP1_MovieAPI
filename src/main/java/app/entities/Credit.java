@@ -1,5 +1,6 @@
 package app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,22 +10,22 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Credit {
     @ManyToMany
-    private List<Crew> crew;
+    private Set<Crew> crew;
     @ManyToMany
-    private List<Actor> cast;
+    private Set<Actor> cast;
 
-    public List<Crew> getDirectors(){
-        List<Crew> directors = new ArrayList<>();
-        for (Crew c: this.crew){
-            if (c.getJob().equals("Director")){
+    public Set<Crew> getDirectors() {
+        Set<Crew> directors = new HashSet<>();
+        for (Crew c : this.crew) {
+            if (c.getJob().equals("Director")) {
                 directors.add(c);
             }
         }
         return directors;
     }
-
 
 
 }
